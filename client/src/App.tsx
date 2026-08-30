@@ -1,10 +1,9 @@
+/** Direção visual: o App segue a montagem vertical da referência — hero, prova, problema, públicos, método e conversão. */
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ShowreelBanner } from './components/ShowreelBanner';
 import { BrandsSection } from './components/BrandsSection';
 import { ProblemSolutionSection } from './components/ProblemSolutionSection';
-import { ServicesSection } from './components/ServicesSection';
 import { AudienceSection } from './components/AudienceSection';
 import { IntelligentProductionSection } from './components/IntelligentProductionSection';
 import { ProcessSection } from './components/ProcessSection';
@@ -75,43 +74,37 @@ export default function App() {
           onOpenShowreel={handleOpenShowreel}
         />
 
-        {/* 2. Panoramic Showreel Banner (As seen in Reference) */}
-        <ShowreelBanner onOpenShowreel={handleOpenShowreel} />
-
-        {/* 3. Marcas que confiam na Nexora */}
+        {/* 2. Prova social */}
         <BrandsSection />
 
-        {/* 4. O que criamos / Nossos Serviços (5 Illustrated Service Cards) */}
-        <ServicesSection onOpenQuote={(service) => handleOpenQuote(service)} />
-
-        {/* 5. O Problema / A Solução */}
+        {/* 3. O problema e a solução */}
         <ProblemSolutionSection />
 
-        {/* 6. Para quem a Nexora produz (6 Niches with Refined Photography) */}
+        {/* 4. Para quem a Nexora produz */}
         <AudienceSection onOpenQuote={(niche) => handleOpenQuote(niche)} />
 
-        {/* 7. Produção Inteligente (Tecnologia + Cinema) */}
+        {/* 5. Produção inteligente */}
         <IntelligentProductionSection />
 
-        {/* 8. Processo de Produção (Com Ilustração do Estúdio & Timelines) */}
+        {/* 6. Processo de produção */}
         <ProcessSection />
 
-        {/* 9. Bastidores + Storyboard */}
+        {/* 7. Bastidores + storyboard */}
         <BehindTheScenesSection onOpenModal={handleOpenDetailModal} />
 
-        {/* 10. Alguns Trabalhos (Portfólio com 6 cards ilustrados) */}
+        {/* 8. Alguns trabalhos */}
         <PortfolioSection
           onSelectProject={handleSelectProject}
           onOpenQuote={() => handleOpenQuote()}
         />
 
-        {/* 11. Pacotes */}
+        {/* 9. Pacotes */}
         <PackagesSection onSelectPackage={(pkg) => handleOpenQuote(pkg)} />
 
-        {/* 12. Nosso Manifesto */}
+        {/* 10. Nosso manifesto */}
         <ManifestoSection />
 
-        {/* 13. CTA Final */}
+        {/* 11. CTA final */}
         <CtaSection onOpenQuote={() => handleOpenQuote()} />
       </main>
 

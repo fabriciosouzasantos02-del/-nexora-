@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { X, Play, Pause, Volume2, VolumeX, Sparkles, ArrowRight, Film } from 'lucide-react';
 import { ProjectItem } from '../types';
 
+/** Direção visual: player tratado como janela de cinema, usando os mesmos frames escuros e recortes do restante da página. */
 interface VideoModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -41,8 +42,8 @@ export function VideoModal({ isOpen, onClose, project, isShowreel, onOpenQuote }
     : project?.description || 'Produção completa estruturada desde o briefing e storyboard até a renderização e color grading final.';
 
   const imageBg = isShowreel
-    ? 'https://images.unsplash.com/photo-1579632652988-689a7973d330?auto=format&fit=crop&w=1600&q=85'
-    : project?.imageUrl || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=85';
+    ? '/manus-storage/crew-camera_2f8618cb.jpeg'
+    : project?.imageUrl || '/manus-storage/client-direction_13902d3b.jpeg';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
@@ -81,7 +82,7 @@ export function VideoModal({ isOpen, onClose, project, isShowreel, onOpenQuote }
             src={imageBg}
             alt={title}
             referrerPolicy="no-referrer"
-            className={`w-full h-full object-cover transition-transform duration-1000 ${
+            className={`w-full h-full object-cover object-[center_45%] transition-transform duration-1000 ${
               isPlaying ? 'scale-105 brightness-95' : 'scale-100 brightness-75'
             }`}
           />

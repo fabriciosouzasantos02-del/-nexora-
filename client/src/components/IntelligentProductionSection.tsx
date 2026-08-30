@@ -1,4 +1,5 @@
-import { User, FolderOpen, Sparkles, LayoutGrid, Film, Lightbulb, Building2, Globe, Camera, Palette, FileText, Users2, ArrowRight } from 'lucide-react';
+/** Direção visual: método apresentado como uma timeline de produção, com interface escura e um único frame de tecnologia como foco. */
+import { User, FolderOpen, Sparkles, LayoutGrid, Film, ArrowRight, Lightbulb, Building2, Globe, Camera, Palette, FileText, Users2 } from 'lucide-react';
 import { MATERIALS_DATA, SMART_FLOW_STEPS } from '../data/nexoraData';
 
 export function IntelligentProductionSection() {
@@ -56,10 +57,10 @@ export function IntelligentProductionSection() {
             <div className="rounded-2xl overflow-hidden border border-amber-500/30 p-1.5 bg-gradient-to-br from-amber-500/20 via-zinc-900 to-zinc-950 shadow-2xl">
               <div className="relative rounded-xl overflow-hidden aspect-video bg-zinc-950">
                 <img
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
-                  alt="Interface do processo de edição e renderização com IA na NEXORA"
+                  src="/manus-storage/post-production_c2c0901a.jpeg"
+                  alt="Profissional trabalhando em múltiplos monitores durante a pós-produção da Nexora"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover brightness-90"
+                  className="w-full h-full object-cover object-[center_42%] brightness-75 contrast-110 saturate-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] text-zinc-300 font-mono">

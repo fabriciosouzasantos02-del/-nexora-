@@ -1,5 +1,6 @@
 import { Instagram, Linkedin, Youtube, Film } from 'lucide-react';
 
+/** Direção visual: assinatura final compacta, com símbolo de lente e navegação leve sobre preto absoluto. */
 export function Footer() {
   const navLinks = [
     { label: 'Início', href: '#hero' },
@@ -18,23 +19,8 @@ export function Footer() {
           
           {/* Logo Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400/20 via-amber-500/10 to-transparent border border-amber-500/30 flex items-center justify-center p-1">
-              <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
-                <path
-                  d="M8 32V8L24 32V8"
-                  stroke="#D4AF37"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M24 16L32 8V32"
-                  stroke="#D4AF37"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <div className="w-9 h-9 border border-amber-500/30 bg-amber-500/10 p-1.5 flex items-center justify-center">
+              <img src="/manus-storage/nexora-symbol_b0e18b14.png" alt="Símbolo Nexora" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col text-left">
               <span className="text-base font-bold tracking-[0.2em] text-white uppercase font-display leading-tight">

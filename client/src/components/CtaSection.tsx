@@ -1,5 +1,6 @@
 import { ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 
+/** Direção visual: encerramento como último frame da narrativa, com horizonte escuro e conversão concentrada em um CTA. */
 interface CtaSectionProps {
   onOpenQuote: () => void;
 }
@@ -13,10 +14,10 @@ export function CtaSection({ onOpenQuote }: CtaSectionProps) {
       {/* Cinematic Horizon Silhouette */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80"
-          alt="Paisagem noturna cinematográfica estrelada"
+          src="/manus-storage/mountain-world_29f2d3d4.jpeg"
+          alt="Pessoa observando uma paisagem montanhosa ao entardecer, frame final da Nexora"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center opacity-15 brightness-50"
+          className="w-full h-full object-cover object-[center_58%] opacity-20 brightness-45 contrast-110 saturate-70"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/90 to-[#08080a]" />
       </div>

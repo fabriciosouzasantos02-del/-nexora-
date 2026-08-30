@@ -1,81 +1,60 @@
+/** Direção visual: manifesto como plano panorâmico de visão, com texto à esquerda e cinco pilares alinhados como créditos de uma obra. */
 import { MANIFESTO_PRINCIPLES } from '../data/nexoraData';
 import { Target, Cpu, Flame, Award, TrendingUp, Sparkles } from 'lucide-react';
 
 export function ManifestoSection() {
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Target': return <Target className="w-5 h-5" />;
-      case 'Cpu': return <Cpu className="w-5 h-5" />;
-      case 'Flame': return <Flame className="w-5 h-5" />;
-      case 'Award': return <Award className="w-5 h-5" />;
-      case 'TrendingUp': return <TrendingUp className="w-5 h-5" />;
-      default: return <Sparkles className="w-5 h-5" />;
+      case 'Target': return <Target className="h-4 w-4" />;
+      case 'Cpu': return <Cpu className="h-4 w-4" />;
+      case 'Flame': return <Flame className="h-4 w-4" />;
+      case 'Award': return <Award className="h-4 w-4" />;
+      case 'TrendingUp': return <TrendingUp className="h-4 w-4" />;
+      default: return <Sparkles className="h-4 w-4" />;
     }
   };
 
   return (
-    <section id="manifesto" className="relative py-28 overflow-hidden bg-[#08080a] border-t border-white/[0.06]">
-      {/* Cinematic Visionary Background Panorama */}
+    <section id="manifesto" className="relative overflow-hidden border-t border-white/[0.06] bg-[#08080a] py-16 sm:py-20">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-          alt="Paisagem cinematográfica com visão de futuro e estratégia"
+          src="/manus-storage/mountain-world_29f2d3d4.jpeg"
+          alt="Pessoa observando uma paisagem de montanha, visão de futuro e estratégia"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center opacity-25 brightness-50"
+          className="h-full w-full object-cover object-[center_48%] opacity-28 brightness-45 contrast-110 saturate-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/80 to-[#08080a]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#08080a] via-[#08080a]/90 to-[#08080a]/75" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-transparent to-[#08080a]/60" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Intro */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-wider uppercase mb-5">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>NOSSO MANIFESTO</span>
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8">
+        <div className="lg:col-span-5">
+          <div className="mb-4 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.28em] text-amber-300">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Nosso manifesto</span>
           </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15] mb-6">
-            Estratégia antes da geração. <br />
-            Direção antes da cena. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 font-serif-cinematic italic">
-              Narrativa antes do efeito.
-            </span>
+          <h2 className="max-w-xl font-display text-3xl font-bold leading-[0.95] tracking-[-0.045em] text-white sm:text-4xl">
+            Estratégia antes da geração.<br />
+            Direção antes da cena.<br />
+            <span className="font-serif-cinematic font-medium italic text-amber-300">Narrativa antes do efeito.</span>
           </h2>
-
-          <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
+          <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-zinc-300">
             Na NEXORA, não acreditamos em vídeos genéricos. Cada projeto é pensado para o seu público, o seu objetivo e a sua marca única.
           </p>
         </div>
 
-        {/* 5 Principles Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {MANIFESTO_PRINCIPLES.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#0e0f16]/90 backdrop-blur-md border border-white/[0.08] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 shadow-xl"
-            >
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:bg-amber-400 group-hover:text-zinc-950 transition-all">
-                  {getIcon(item.icon)}
-                </div>
-
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2 group-hover:text-amber-300 transition-colors">
-                  {item.title}
-                </h3>
-
-                <p className="text-xs text-zinc-400 leading-relaxed font-light">
-                  {item.description}
-                </p>
+        <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-5 lg:col-span-7">
+          {MANIFESTO_PRINCIPLES.map((item, index) => (
+            <div key={item.title} className="group">
+              <div className="mb-3 flex h-9 w-9 items-center justify-center border border-amber-400/40 bg-black/25 text-amber-300 transition-colors group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-zinc-950">
+                {getIcon(item.icon)}
               </div>
-
-              <div className="mt-4 pt-3 border-t border-white/[0.05] text-[10px] font-mono text-zinc-400">
-                PILAR 0{idx + 1}
-              </div>
+              <h3 className="mb-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">{item.title}</h3>
+              <p className="text-[10px] font-light leading-[1.4] text-zinc-400">{item.description}</p>
+              <span className="mt-3 block font-mono text-[8px] tracking-[0.18em] text-zinc-600">PILAR 0{index + 1}</span>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

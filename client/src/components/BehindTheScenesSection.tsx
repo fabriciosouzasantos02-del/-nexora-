@@ -5,15 +5,16 @@ interface BehindTheScenesSectionProps {
   onOpenModal: (type: 'bastidores' | 'storyboard') => void;
 }
 
+/** Direção visual: dois frames editoriais em paralelo, com texto de direção e imagem tratada como still do mesmo set. */
 export function BehindTheScenesSection({ onOpenModal }: BehindTheScenesSectionProps) {
   return (
-    <section id="bastidores-storyboard" className="py-24 bg-[#08080a] border-t border-white/[0.06] relative">
+    <section id="bastidores-storyboard" className="py-12 sm:py-16 bg-[#08080a] border-t border-white/[0.06] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/10">
           
           {/* BASTIDORES CARD */}
-          <div className="bg-[#0e0f15] border border-white/[0.08] hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 group shadow-2xl">
+          <div className="bg-[#0e0f15] hover:bg-[#11131a] p-4 sm:p-5 flex flex-col justify-between transition-colors duration-300 group">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-wider uppercase mb-4">
                 <Camera className="w-3.5 h-3.5" />
@@ -29,7 +30,7 @@ export function BehindTheScenesSection({ onOpenModal }: BehindTheScenesSectionPr
                   src={BEHIND_THE_SCENES.bastidores.imageUrl}
                   alt="Bastidores de produção audiovisual cinematográfica com câmeras profissionais e iluminação"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
+                  className="w-full h-full object-cover object-[center_46%] group-hover:scale-105 transition-transform duration-700 brightness-70 contrast-110 saturate-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/80 via-transparent to-transparent" />
                 
@@ -56,7 +57,7 @@ export function BehindTheScenesSection({ onOpenModal }: BehindTheScenesSectionPr
           </div>
 
           {/* STORYBOARD CARD */}
-          <div className="bg-[#0e0f15] border border-white/[0.08] hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 group shadow-2xl">
+          <div className="bg-[#0e0f15] hover:bg-[#11131a] p-4 sm:p-5 flex flex-col justify-between transition-colors duration-300 group">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-wider uppercase mb-4">
                 <LayoutGrid className="w-3.5 h-3.5" />
@@ -72,7 +73,7 @@ export function BehindTheScenesSection({ onOpenModal }: BehindTheScenesSectionPr
                   src={BEHIND_THE_SCENES.storyboard.imageUrl}
                   alt="Esboços e ilustrações de storyboard profissional para planejamento de cenas"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
+                  className="w-full h-full object-cover object-[center_46%] group-hover:scale-105 transition-transform duration-700 brightness-70 contrast-110 saturate-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/80 via-transparent to-transparent" />
                 

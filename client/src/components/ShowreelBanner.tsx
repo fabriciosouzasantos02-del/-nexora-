@@ -6,6 +6,7 @@ interface ShowreelBannerProps {
   onOpenShowreel: () => void;
 }
 
+/** Direção visual: banner panorâmico como intervalo de filme, com um único frame escuro e CTA de reprodução. */
 export function ShowreelBanner({ onOpenShowreel }: ShowreelBannerProps) {
   return (
     <section className="py-12 bg-[#08080a] relative overflow-hidden">
@@ -18,9 +19,9 @@ export function ShowreelBanner({ onOpenShowreel }: ShowreelBannerProps) {
         >
           {/* Panoramic Atmospheric Background Image */}
           <img
-            src="/manus-storage/nexora-showreel-panorama_bc907cf1.jpg"
-            alt="Set cinematográfico panorâmico da Nexora com iluminação de estúdio"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 brightness-60 group-hover:brightness-75 contrast-110"
+            src="/manus-storage/crew-set_08736bce.jpeg"
+            alt="Bastidores da produção audiovisual da Nexora em set de estúdio"
+            className="absolute inset-0 w-full h-full object-cover object-[center_46%] group-hover:scale-105 transition-transform duration-1000 brightness-50 group-hover:brightness-70 contrast-115 saturate-90"
           />
 
           {/* Vignette & Ambient Gradient Overlays */}

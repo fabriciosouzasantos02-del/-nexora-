@@ -7,27 +7,28 @@ interface HeroProps {
   onOpenShowreel: () => void;
 }
 
+/** Direção visual: abertura em dois painéis, headline de pôster à esquerda e frame real de produção à direita. */
 export function Hero({ onOpenQuote, onOpenShowreel }: HeroProps) {
   return (
-    <section id="hero" className="relative min-h-[92vh] pt-32 pb-20 flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[500px] lg:min-h-[460px] pt-24 pb-10 lg:pt-24 lg:pb-8 flex items-center overflow-hidden">
       {/* Background ambient lighting effects */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-amber-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-950/10 via-[#08080a] to-[#08080a] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* Left Column: Headlines & CTAs */}
-          <div className="lg:col-span-6 flex flex-col items-start text-left">
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
             {/* Small Badge */}
             <div className="inline-flex items-center gap-2 border border-white/15 bg-black/20 px-3.5 py-1.5 text-xs font-semibold tracking-[0.2em] text-zinc-400 uppercase mb-6">
               <Sparkles className="w-3.5 h-3.5 text-zinc-300" />
-              <span>ESTÚDIO DE PRODUÇÃO INTELIGENTE</span>
+              <span>AI CREATIVE STUDIO</span>
             </div>
 
             {/* Main Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.12] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.15rem] font-bold tracking-tight text-white leading-[0.98] mb-5">
               Sua marca merece <br />
               mais do que um <br />
               <span className="font-serif-cinematic italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 drop-shadow-[0_2px_15px_rgba(212,175,55,0.3)]">
@@ -74,16 +75,16 @@ export function Hero({ onOpenQuote, onOpenShowreel }: HeroProps) {
           </div>
 
           {/* Right Column: High-End Cinematic Studio Scene with Floating Markers */}
-          <div className="lg:col-span-6 relative">
+          <div className="lg:col-span-7 relative">
             <div className="relative mx-auto max-w-lg lg:max-w-none">
               
               {/* Outer Glow Container */}
               <div className="relative rounded-3xl overflow-hidden border border-amber-500/20 shadow-2xl bg-gradient-to-b from-zinc-800/40 to-zinc-950/80 p-2 group">
-                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11]">
+                <div className="relative rounded-2xl overflow-hidden aspect-[16/9] lg:aspect-[2.1/1]">
                   <img
-                    src="/manus-storage/nexora-hero-cinematic_2d0b7396.jpg"
-                    alt="Lente de cinema e modelador de luz em set criativo da Nexora"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 brightness-95 contrast-105"
+                    src="/manus-storage/hero-reference_537d8a80.jpeg"
+                    alt="Set de produção audiovisual da Nexora com câmera, luzes e monitor de referência"
+                    className="w-full h-full object-cover object-[center_48%] group-hover:scale-105 transition-transform duration-700 brightness-90 contrast-110 saturate-90"
                   />
                   
                   {/* Studio Atmospheric Gradient Overlay */}

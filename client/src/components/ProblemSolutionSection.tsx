@@ -1,99 +1,55 @@
-import { AlertCircle, CheckCircle2, ArrowRight, XCircle, Sparkles, TrendingUp, Zap, Clock } from 'lucide-react';
+/** Direção visual: contraste editorial entre problema e solução, dentro de uma única moldura horizontal com cartões de leitura rápida. */
 import { PROBLEMS_DATA, SOLUTIONS_DATA } from '../data/nexoraData';
+import { AlertCircle, CheckCircle2, Clock, Sparkles, TrendingUp, XCircle, Zap } from 'lucide-react';
 
 export function ProblemSolutionSection() {
+  const problemIcons = [XCircle, AlertCircle, Clock, Zap];
+  const solutionIcons = [CheckCircle2, Sparkles, Zap, TrendingUp];
+
   return (
-    <section id="problema-solucao" className="py-24 relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-red-950/10 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[130px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          
-          {/* LEFT SIDE: O PROBLEMA */}
-          <div className="lg:col-span-6 bg-[#0e0f14]/80 border border-red-500/20 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between shadow-2xl relative group">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-semibold tracking-wider uppercase mb-5">
-                <AlertCircle className="w-3.5 h-3.5" />
-                <span>O PROBLEMA</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-8 leading-tight">
-                Muitas empresas ainda comunicam suas ideias de forma fraca.
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {PROBLEMS_DATA.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-xl bg-zinc-900/60 border border-white/[0.06] hover:border-red-500/30 transition-all flex flex-col justify-start"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center mb-3">
-                      {idx === 0 && <XCircle className="w-4 h-4" />}
-                      {idx === 1 && <AlertCircle className="w-4 h-4" />}
-                      {idx === 2 && <Clock className="w-4 h-4" />}
-                      {idx === 3 && <Zap className="w-4 h-4" />}
-                    </div>
-                    <h3 className="text-sm font-semibold text-zinc-200 mb-1.5 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 leading-relaxed font-light">
-                      {item.description}
-                    </p>
+    <section id="problema-solucao" className="relative overflow-hidden border-t border-white/[0.06] bg-[#080a0f] py-9 sm:py-12">
+      <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-gradient-to-b from-transparent via-amber-400/55 to-transparent lg:block" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid overflow-hidden border border-white/15 bg-[#0b0d12] lg:grid-cols-2">
+          <article className="border-b border-white/10 p-5 sm:p-7 lg:border-b-0 lg:border-r lg:p-8">
+            <div className="mb-4 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.28em] text-red-300">
+              <AlertCircle className="h-3.5 w-3.5" />
+              <span>O problema</span>
+            </div>
+            <h2 className="mb-6 max-w-md font-display text-2xl font-bold leading-[0.98] tracking-[-0.04em] text-white sm:text-3xl">Muitas empresas ainda comunicam suas ideias de forma fraca.</h2>
+            <div className="grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10">
+              {PROBLEMS_DATA.map((item, index) => {
+                const Icon = problemIcons[index];
+                return (
+                  <div key={item.title} className="bg-[#101218] p-3 transition-colors hover:bg-[#15171f] sm:p-4">
+                    <Icon className="mb-3 h-4 w-4 text-red-300" />
+                    <h3 className="mb-1 text-[11px] font-semibold leading-[1.15] text-zinc-200">{item.title}</h3>
+                    <p className="text-[10px] font-light leading-[1.35] text-zinc-500">{item.description}</p>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
+          </article>
 
-            <div className="mt-8 pt-6 border-t border-white/[0.06] flex items-center gap-2 text-xs text-zinc-400">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span>O resultado: marcas invisíveis em mercados ultra-competitivos.</span>
+          <article className="p-5 sm:p-7 lg:p-8">
+            <div className="mb-4 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.28em] text-amber-300">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>A solução</span>
             </div>
-          </div>
-
-          {/* RIGHT SIDE: A SOLUÇÃO */}
-          <div className="lg:col-span-6 bg-gradient-to-b from-[#14151e]/90 to-[#0e0f14]/90 border border-amber-500/40 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between shadow-2xl relative group gold-glow-subtle">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs font-semibold tracking-wider uppercase mb-5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>A SOLUÇÃO</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-8 leading-tight">
-                A NEXORA transforma ideias em experiências visuais estratégicas que geram resultados reais.
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {SOLUTIONS_DATA.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-xl bg-zinc-900/80 border border-amber-500/20 hover:border-amber-400/60 transition-all flex flex-col justify-start hover:bg-amber-500/[0.04]"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-amber-400/15 text-amber-400 flex items-center justify-center mb-3">
-                      {idx === 0 && <CheckCircle2 className="w-4 h-4 text-amber-400" />}
-                      {idx === 1 && <Sparkles className="w-4 h-4 text-amber-400" />}
-                      {idx === 2 && <Zap className="w-4 h-4 text-amber-400" />}
-                      {idx === 3 && <TrendingUp className="w-4 h-4 text-amber-400" />}
-                    </div>
-                    <h3 className="text-sm font-semibold text-zinc-100 mb-1.5 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 leading-relaxed font-light">
-                      {item.description}
-                    </p>
+            <h2 className="mb-6 max-w-md font-display text-2xl font-bold leading-[0.98] tracking-[-0.04em] text-white sm:text-3xl">A NEXORA transforma ideias em experiências visuais estratégicas que geram resultados reais.</h2>
+            <div className="grid grid-cols-2 gap-px overflow-hidden border border-amber-400/20 bg-amber-400/20">
+              {SOLUTIONS_DATA.map((item, index) => {
+                const Icon = solutionIcons[index];
+                return (
+                  <div key={item.title} className="bg-[#11141b] p-3 transition-colors hover:bg-[#171a22] sm:p-4">
+                    <Icon className="mb-3 h-4 w-4 text-amber-300" />
+                    <h3 className="mb-1 text-[11px] font-semibold leading-[1.15] text-zinc-100">{item.title}</h3>
+                    <p className="text-[10px] font-light leading-[1.35] text-zinc-500">{item.description}</p>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
-
-            <div className="mt-8 pt-6 border-t border-amber-500/20 flex items-center gap-2 text-xs text-amber-300">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-              <span className="font-medium">Transforme sua comunicação em uma máquina de autoridade e vendas.</span>
-            </div>
-          </div>
-
+          </article>
         </div>
       </div>
     </section>
