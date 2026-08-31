@@ -26,9 +26,9 @@
 
 ## Correção Resend Free e restauração GitHub
 
-- [ ] Auditar `server/contact.ts`, `server/routers.ts`, `QuoteModal.tsx` e remotos/branch do Git.
-- [ ] Fixar o envio com `from: onboarding@resend.dev`, `to: galeria.faz11@gmail.com` e `reply_to` igual ao e-mail do visitante.
-- [ ] Confirmar que todos os campos preenchidos ou selecionados aparecem no HTML e no texto do e-mail.
-- [ ] Validar testes, tipagem, build e integridade das 18 imagens/ativos atuais.
-- [ ] Adicionar todos os arquivos, criar o commit solicitado e sincronizar a branch atual com push forçado autorizado.
-- [ ] Entregar o identificador do checkpoint e o status da sincronização.
+- [x] Auditar `server/contact.ts`, `server/routers.ts`, `QuoteModal.tsx` e remotos/branch do Git.
+- [x] Fixar o envio com `from: onboarding@resend.dev`, `to: galeria.faz11@gmail.com` e `reply_to` igual ao e-mail do visitante.
+- [x] Confirmar que todos os campos preenchidos ou selecionados aparecem no HTML e no texto do e-mail.
+- [x] Validar testes, tipagem, build e integridade das 18 imagens/ativos atuais.
+- [x] Adicionar todos os arquivos, criar o commit solicitado e sincronizar a branch atual com push forçado autorizado.
+- [x] Entregar o identificador do checkpoint e o status da sincronização.
