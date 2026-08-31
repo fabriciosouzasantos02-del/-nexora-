@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, type FormEvent } from 'react';
 import { X, Sparkles, Send, CheckCircle2, MessageSquare, Phone, User, Building, Film } from 'lucide-react';
 import { PACKAGES_DATA } from '../data/nexoraData';
-import { trpc } from '../lib/trpc';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -20,11 +19,10 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
   const [niche, setNiche] = useState(initialNiche || 'E-commerce');
   const [details, setDetails] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
-  const contactMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => setSubmitted(true),
-  });
 
   useEffect(() => {
     if (initialPackage) setSelectedPackage(initialPackage);
@@ -68,18 +66,30 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    contactMutation.mutate({
-      name,
-      email,
-      phone,
-      businessName,
-      niche,
-      selectedPackage,
-      contactType,
-      details,
-    });
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ name, email, phone, businessName, niche, selectedPackage, contactType, details }),
+      });
+      const contentType = response.headers.get('content-type') || '';
+      const payload = contentType.includes('application/json') ? await response.json() : null;
+
+      if (!response.ok || !payload?.success) {
+        throw new Error(payload?.error || 'Não foi possível enviar agora. Tente novamente.');
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Não foi possível enviar agora. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleSendWhatsApp = () => {
@@ -292,20 +302,20 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
                 />
               </div>
 
-              {contactMutation.error ? (
+              {submitError ? (
                 <p className="text-xs text-red-300" role="alert" aria-live="polite">
-                  {contactMutation.error.message || 'Não foi possível enviar agora. Tente novamente.'}
+                  {submitError}
                 </p>
               ) : null}
 
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
                   type="submit"
-                  disabled={contactMutation.isPending}
+                  disabled={isSubmitting}
                   className="flex-1 py-3 rounded-xl text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-zinc-950 hover:brightness-110 disabled:opacity-60 disabled:cursor-wait transition-all flex items-center justify-center gap-2 gold-glow"
                 >
                   <Send className="w-4 h-4 text-zinc-950" />
-                  <span>{contactMutation.isPending ? 'Enviando...' : 'Enviar solicitação'}</span>
+                  <span>{isSubmitting ? 'Enviando...' : 'Enviar solicitação'}</span>
                 </button>
                 <button
                   type="button"
