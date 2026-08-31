@@ -23,7 +23,6 @@ export default function App() {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [selectedPackageForQuote, setSelectedPackageForQuote] = useState<string | undefined>();
   const [selectedNicheForQuote, setSelectedNicheForQuote] = useState<string | undefined>();
-
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isShowreel, setIsShowreel] = useState(false);
@@ -60,6 +59,7 @@ export default function App() {
     setDetailModalOpen(true);
   };
 
+  // make sure to consider if you need authentication for certain routes
   return (
     <div className="min-h-screen bg-[#08080a] text-[#EDEDEE] selection:bg-[#d4af37] selection:text-[#08080a] relative">
       

@@ -1,18 +1,19 @@
-# Refinamento da referência visual
+# Integração segura de contato com Resend
 
-- [x] Abrir o link do Google Drive e confirmar se há uma pasta ou um único arquivo compartilhado.
-- [x] Inventariar nomes, formatos, dimensões e correspondência dos arquivos visuais disponíveis.
-- [x] Mapear a imagem de referência por seções, proporções, ordem, títulos, ícones e posições.
-- [x] Preservar os handlers, modais, filtros, navegação e demais interações existentes.
-- [x] Substituir os ativos visuais pelas imagens do Drive e ajustar enquadramento, posição e corte.
-- [x] Refinar tipografia, textos, espaçamento, composição e densidade visual para desktop.
-- [x] Validar build, responsividade e fidelidade visual no preview.
-- [ ] Salvar a nova versão em checkpoint e entregar o projeto.
+- [ ] Adicionar backend server-side ao projeto sem expor `RESEND_API_KEY` no frontend.
+- [ ] Implementar endpoint POST para validar e normalizar os dados do formulário.
+- [ ] Enviar notificação para `Galeria.faz11@gmail.com` usando o Resend e uma identidade de remetente compatível com o domínio configurado.
+- [ ] Manter o endereço de destino fora de toda a interface pública.
+- [ ] Centralizar os CTAs de orçamento, mensagem e contato no mesmo formulário.
+- [ ] Criar botão de WhatsApp com número `+55 11951493429` e mensagem preenchida pelo formulário.
+- [ ] Preservar os modais e fluxos visuais existentes.
+- [ ] Validar erros, sucesso, acessibilidade, tipagem e build.
+- [ ] Salvar checkpoint final e entregar a versão integrada.
 
 ## Critérios de aceite
 
-- [ ] A primeira dobra desktop reproduz a composição da referência: navegação, hero, texto, CTAs e imagem principal.
-- [ ] A ordem e o esqueleto das seções seguem a referência enviada.
-- [ ] O sistema funcional atual permanece ativo e sem alterações de fluxo.
-- [ ] As imagens usam os arquivos do Google Drive quando disponíveis, com `object-fit` e `object-position` ajustados por cena.
-- [ ] Nenhuma imagem ou texto fica ilegível em viewport desktop.
+- [ ] A chave do Resend é lida apenas no backend por variável de ambiente.
+- [ ] O formulário coleta nome, e-mail, telefone, tipo de contato, ideia e mensagem.
+- [ ] O envio bem-sucedido exibe confirmação sem revelar o e-mail de destino.
+- [ ] Falhas de envio exibem uma mensagem útil sem vazar detalhes internos.
+- [ ] O WhatsApp abre com os dados digitados pelo usuário na mensagem.
