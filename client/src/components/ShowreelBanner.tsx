@@ -19,7 +19,7 @@ export function ShowreelBanner({ onOpenShowreel }: ShowreelBannerProps) {
         >
           {/* Panoramic Atmospheric Background Image */}
           <img
-            src="/manus-storage/crew-set_08736bce.jpeg"
+            src="/assets/images/crew-set_08736bce.webp"
             alt="Bastidores da produção audiovisual da Nexora em set de estúdio"
             className="absolute inset-0 w-full h-full object-cover object-[center_46%] group-hover:scale-105 transition-transform duration-1000 brightness-50 group-hover:brightness-70 contrast-115 saturate-90"
           />

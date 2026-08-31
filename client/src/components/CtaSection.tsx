@@ -14,7 +14,7 @@ export function CtaSection({ onOpenQuote }: CtaSectionProps) {
       {/* Cinematic Horizon Silhouette */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/manus-storage/mountain-world_29f2d3d4.jpeg"
+          src="/assets/images/mountain-world_29f2d3d4.webp"
           alt="Pessoa observando uma paisagem montanhosa ao entardecer, frame final da Nexora"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-[center_58%] opacity-20 brightness-45 contrast-110 saturate-70"

@@ -42,7 +42,7 @@ export function Navbar({ onOpenQuote }: NavbarProps) {
         <a href="#hero" className="flex items-center gap-3 group">
           <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-amber-400/20 via-amber-500/10 to-transparent border border-amber-500/30 flex items-center justify-center p-1.5 transition-transform group-hover:scale-105">
             <img
-              src="/manus-storage/nexora-symbol_b0e18b14.png"
+              src="/assets/images/nexora-symbol_b0e18b14.webp"
               alt="Símbolo Nexora"
               className="w-full h-full object-contain"
             />

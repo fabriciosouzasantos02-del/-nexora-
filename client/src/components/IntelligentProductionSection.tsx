@@ -57,7 +57,7 @@ export function IntelligentProductionSection() {
             <div className="rounded-2xl overflow-hidden border border-amber-500/30 p-1.5 bg-gradient-to-br from-amber-500/20 via-zinc-900 to-zinc-950 shadow-2xl">
               <div className="relative rounded-xl overflow-hidden aspect-video bg-zinc-950">
                 <img
-                  src="/manus-storage/post-production_c2c0901a.jpeg"
+                  src="/assets/images/post-production_c2c0901a.webp"
                   alt="Profissional trabalhando em múltiplos monitores durante a pós-produção da Nexora"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-[center_42%] brightness-75 contrast-110 saturate-80"

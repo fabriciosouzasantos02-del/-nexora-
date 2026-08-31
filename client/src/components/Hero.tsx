@@ -82,7 +82,7 @@ export function Hero({ onOpenQuote, onOpenShowreel }: HeroProps) {
               <div className="relative rounded-3xl overflow-hidden border border-amber-500/20 shadow-2xl bg-gradient-to-b from-zinc-800/40 to-zinc-950/80 p-2 group">
                 <div className="relative rounded-2xl overflow-hidden aspect-[16/9] lg:aspect-[2.1/1]">
                   <img
-                    src="/manus-storage/hero-reference_537d8a80.jpeg"
+                    src="/assets/images/hero-reference_537d8a80.webp"
                     alt="Set de produção audiovisual da Nexora com câmera, luzes e monitor de referência"
                     className="w-full h-full object-cover object-[center_48%] group-hover:scale-105 transition-transform duration-700 brightness-90 contrast-110 saturate-90"
                   />

@@ -20,7 +20,7 @@ export function Footer() {
           {/* Logo Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
             <div className="w-9 h-9 border border-amber-500/30 bg-amber-500/10 p-1.5 flex items-center justify-center">
-              <img src="/manus-storage/nexora-symbol_b0e18b14.png" alt="Símbolo Nexora" className="h-full w-full object-contain" />
+              <img src="/assets/images/nexora-symbol_b0e18b14.webp" alt="Símbolo Nexora" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col text-left">
               <span className="text-base font-bold tracking-[0.2em] text-white uppercase font-display leading-tight">

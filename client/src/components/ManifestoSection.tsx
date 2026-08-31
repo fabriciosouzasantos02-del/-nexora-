@@ -18,7 +18,7 @@ export function ManifestoSection() {
     <section id="manifesto" className="relative overflow-hidden border-t border-white/[0.06] bg-[#08080a] py-16 sm:py-20">
       <div className="absolute inset-0 z-0">
         <img
-          src="/manus-storage/mountain-world_29f2d3d4.jpeg"
+          src="/assets/images/mountain-world_29f2d3d4.webp"
           alt="Pessoa observando uma paisagem de montanha, visão de futuro e estratégia"
           referrerPolicy="no-referrer"
           className="h-full w-full object-cover object-[center_48%] opacity-28 brightness-45 contrast-110 saturate-75"
