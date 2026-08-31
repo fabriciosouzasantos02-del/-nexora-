@@ -1,6 +1,7 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent } from 'react';
 import { X, Sparkles, Send, CheckCircle2, MessageSquare, Phone, User, Building, Film } from 'lucide-react';
 import { PACKAGES_DATA } from '../data/nexoraData';
+import { trpc } from '../lib/trpc';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -11,38 +12,104 @@ interface QuoteModalProps {
 
 export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: QuoteModalProps) {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [phone, setPhone] = useState('');
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || 'PROFISSIONAL (3 VÍDEOS)');
+  const [contactType, setContactType] = useState('Orçamento de vídeo');
   const [niche, setNiche] = useState(initialNiche || 'E-commerce');
   const [details, setDetails] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const contactMutation = trpc.contact.submit.useMutation({
+    onSuccess: () => setSubmitted(true),
+  });
 
   useEffect(() => {
     if (initialPackage) setSelectedPackage(initialPackage);
     if (initialNiche) setNiche(initialNiche);
   }, [initialPackage, initialNiche]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const dialog = modalRef.current;
+    const focusableSelector = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href]';
+    const focusInitialControl = () => dialog?.querySelector<HTMLElement>(focusableSelector)?.focus();
+    focusInitialControl();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key !== 'Tab' || !dialog) return;
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      previouslyFocusedRef.current?.focus();
+      previouslyFocusedRef.current = null;
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    contactMutation.mutate({
+      name,
+      email,
+      phone,
+      businessName,
+      niche,
+      selectedPackage,
+      contactType,
+      details,
+    });
   };
 
   const handleSendWhatsApp = () => {
     const text = encodeURIComponent(
       `Olá NEXORA! Me chamo ${name || 'um cliente'} da empresa ${businessName || 'meu negócio'}.\n` +
+      `Meu e-mail: ${email || 'não informado'}\n` +
+      `Tipo de contato: ${contactType}\n` +
       `Estou interessado no pacote: ${selectedPackage}\n` +
       `Segmento: ${niche}\n` +
       `Detalhes: ${details || 'Gostaria de uma proposta personalizada'}`
     );
-    window.open(`https://wa.me/5511999999999?text=${text}`, '_blank');
+    window.open(`https://wa.me/5511951493429?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
       <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        aria-labelledby="quote-modal-title"
+        aria-describedby="quote-modal-description"
+
         className="relative w-full max-w-xl bg-[#0e0f16] border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden text-zinc-100 gold-glow max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
@@ -63,10 +130,10 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
                 <Sparkles className="w-3 h-3" />
                 <span>ORÇAMENTO PERSONALIZADO</span>
               </div>
-              <h2 className="text-2xl font-bold tracking-tight text-white">
+              <h2 id="quote-modal-title" className="text-2xl font-bold tracking-tight text-white">
                 Vamos criar algo cinematográfico
               </h2>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-1 font-light">
+              <p id="quote-modal-description" className="text-xs sm:text-sm text-zinc-400 mt-1 font-light">
                 Preencha as informações do seu negócio para receber uma proposta estratégica sob medida.
               </p>
             </div>
@@ -102,8 +169,23 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
                 </div>
               </div>
 
+              <div>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
+                  Como podemos ajudar?
+                </label>
+                <select
+                  value={contactType}
+                  onChange={(e) => setContactType(e.target.value)}
+                  className="w-full bg-zinc-900 border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                >
+                  <option value="Orçamento de vídeo">Quero solicitar um orçamento</option>
+                  <option value="Nova ideia">Quero apresentar uma ideia</option>
+                  <option value="Suporte">Preciso de suporte / retorno</option>
+                </select>
+              </div>
+
               {/* Name & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Seu nome
@@ -116,6 +198,23 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
                       placeholder="Ex: Carlos Mendes"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      className="w-full bg-zinc-900 border border-white/10 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    E-mail
+                  </label>
+                  <div className="relative">
+                    <Send className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      required
+                      placeholder="voce@empresa.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-zinc-900 border border-white/10 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
@@ -193,13 +292,20 @@ export function QuoteModal({ isOpen, onClose, initialPackage, initialNiche }: Qu
                 />
               </div>
 
+              {contactMutation.error ? (
+                <p className="text-xs text-red-300" role="alert" aria-live="polite">
+                  {contactMutation.error.message || 'Não foi possível enviar agora. Tente novamente.'}
+                </p>
+              ) : null}
+
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-zinc-950 hover:brightness-110 transition-all flex items-center justify-center gap-2 gold-glow"
+                  disabled={contactMutation.isPending}
+                  className="flex-1 py-3 rounded-xl text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-zinc-950 hover:brightness-110 disabled:opacity-60 disabled:cursor-wait transition-all flex items-center justify-center gap-2 gold-glow"
                 >
                   <Send className="w-4 h-4 text-zinc-950" />
-                  <span>Enviar solicitação</span>
+                  <span>{contactMutation.isPending ? 'Enviando...' : 'Enviar solicitação'}</span>
                 </button>
                 <button
                   type="button"

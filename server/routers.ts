@@ -2,6 +2,8 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { sendContactEmail } from "./contact";
+import { z } from "zod";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -17,12 +19,22 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  contact: router({
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().trim().min(2).max(120),
+          email: z.string().trim().email().max(320),
+          phone: z.string().trim().min(8).max(40),
+          businessName: z.string().trim().max(160).default(""),
+          niche: z.string().trim().max(120).default(""),
+          selectedPackage: z.string().trim().max(160).default(""),
+          contactType: z.string().trim().min(2).max(80),
+          details: z.string().trim().min(10).max(2_000),
+        })
+      )
+      .mutation(async ({ input }) => sendContactEmail(input)),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

@@ -50,15 +50,14 @@ export function CtaSection({ onOpenQuote }: CtaSectionProps) {
             <ArrowRight className="w-4 h-4 text-zinc-950" />
           </button>
 
-          <a
-            href="https://wa.me/5511999999999?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20NEXORA"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={onOpenQuote}
             className="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#14151b] text-zinc-200 border border-white/10 hover:border-amber-400/40 hover:text-white transition-all flex items-center justify-center gap-2"
           >
             <MessageCircle className="w-4 h-4 text-emerald-400" />
             <span>Falar no WhatsApp</span>
-          </a>
+          </button>
         </div>
 
       </div>
