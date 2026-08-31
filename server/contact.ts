@@ -13,6 +13,7 @@ export type ContactInput = {
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const MAX_FIELD_LENGTH = 2_000;
+const CONTACT_RECIPIENT = "galeria.faz11@gmail.com";
 
 function escapeHtml(value: string) {
   return value
@@ -44,7 +45,7 @@ export function validateContactInput(input: ContactInput) {
 }
 
 export async function sendContactEmail(input: ContactInput) {
-  if (!ENV.resendApiKey || !ENV.contactRecipientEmail) {
+  if (!ENV.resendApiKey) {
     throw new Error("Serviço de contato não configurado.");
   }
 
@@ -79,8 +80,8 @@ export async function sendContactEmail(input: ContactInput) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Nexora <onboarding@resend.dev>",
-      to: [ENV.contactRecipientEmail],
+      from: "onboarding@resend.dev",
+      to: [CONTACT_RECIPIENT],
       reply_to: data.email,
       subject: `Novo contato de ${data.name} — ${data.businessName || "orçamento"}`,
       text,

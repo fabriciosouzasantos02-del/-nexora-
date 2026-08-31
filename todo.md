@@ -23,3 +23,12 @@
 - [x] Adicionar um campo explícito de tipo de contato e incluí-lo no e-mail do Resend e na mensagem do WhatsApp.
 - [x] Auditar todos os botões de contato e envio de mensagem pelos labels reais, garantindo o mesmo modal e backend.
 - [x] Validar o fluxo do modal no preview, incluindo sucesso, erro, foco, teclado e fechamento.
+
+## Correção Resend Free e restauração GitHub
+
+- [ ] Auditar `server/contact.ts`, `server/routers.ts`, `QuoteModal.tsx` e remotos/branch do Git.
+- [ ] Fixar o envio com `from: onboarding@resend.dev`, `to: galeria.faz11@gmail.com` e `reply_to` igual ao e-mail do visitante.
+- [ ] Confirmar que todos os campos preenchidos ou selecionados aparecem no HTML e no texto do e-mail.
+- [ ] Validar testes, tipagem, build e integridade das 18 imagens/ativos atuais.
+- [ ] Adicionar todos os arquivos, criar o commit solicitado e sincronizar a branch atual com push forçado autorizado.
+- [ ] Entregar o identificador do checkpoint e o status da sincronização.
