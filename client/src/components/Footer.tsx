@@ -93,13 +93,8 @@ export function Footer() {
         </div>
 
         {/* Bottom copyright line */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
+        <div className="pt-6 text-center text-xs text-zinc-400">
           <p>© {new Date().getFullYear()} NEXORA AI CREATIVE STUDIO. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-6">
-            <span className="hover:text-zinc-300 cursor-pointer">Termos de Uso</span>
-            <span className="hover:text-zinc-300 cursor-pointer">Privacidade</span>
-            <span className="hover:text-zinc-300 cursor-pointer">Diretrizes de IA</span>
-          </div>
         </div>
 
       </div>
